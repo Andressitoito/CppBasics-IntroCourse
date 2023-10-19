@@ -1,6 +1,7 @@
 {
  "files.associations": {
   "*.css": "tailwindcss",
-  "ostream": "cpp"
+  "ostream": "cpp",
+  "iostream": "cpp"
  }
 }
