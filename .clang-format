@@ -1,0 +1,20 @@
+BasedOnStyle: Google
+IndentWidth: 1
+ColumnLimit: 80
+MaxEmptyLinesToKeep: 4
+
+BreakBeforeBraces: Custom
+BraceWrapping:
+ AfterFunction: false
+ AfterClass: false
+ AfterControlStatement: false
+ BeforeElse: false
+ AfterEnum: false
+ #  AfterNamespace: true/false
+ AfterObjCDeclaration: true
+ AfterStruct: true
+ #  AfterUnion: true/false
+ BeforeCatch: true
+ IndentBraces: false
+ BWACS_Never: false
+
