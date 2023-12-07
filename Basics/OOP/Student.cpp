@@ -10,8 +10,15 @@ public:
  Student() { cout << "Constructor called" << endl; }
 
  // Parameterized constructor
- Student(int r) {
+ Student(int rollNumber) {
   cout << "Constructor 2 called " << endl;
+  this->rollNumber = rollNumber;
+ }
+
+ Student(int a, int r) {
+  cout << "Constructor 3 called " << endl;
+  cout << "this => " << this << endl;
+  age = a;
   rollNumber = r;
  }
 
