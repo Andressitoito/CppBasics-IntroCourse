@@ -1,6 +1,15 @@
 #include <iostream>
 using namespace std;
 
+/*
+As soon as we create a class we get functions
+
+1- Default constructor
+2- Copy contructor
+3- Copy assignment constructor
+4- Destructor
+*/
+
 class Student {
  int age;
  char name[50];
@@ -27,4 +36,7 @@ public:
  void showAge() { cout << "age => " << age << endl; }
  int getAge() { return age; }
  void setAge(int a) { age = a; }
+
+
+ ~Student() { cout << "destructor called => " << endl; }
 };
