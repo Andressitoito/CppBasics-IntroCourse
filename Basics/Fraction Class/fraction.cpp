@@ -12,11 +12,13 @@ public:
   this->numerator = numerator;
   this->denominator = denominator;
  }
+
  void print() {
   cout << "Fraction => " << this->numerator << "/" << denominator
        << endl;
  }
- void add(Fraction f2) {
+
+ void add(Fraction const &f2) {
   int lcm = this->denominator * f2.denominator;
   int x = lcm / denominator;
   int y = lcm / f2.denominator;
@@ -27,6 +29,14 @@ public:
 
   this->simplify();
  }
+
+ void multiply(Fraction const &f2) {
+  this->numerator = numerator * f2.numerator;
+  this->denominator = denominator * f2.denominator;
+
+  this->simplify();
+ }
+
  void simplify() {
   int gcd = 1;
   int j = min(this->numerator, this->denominator);
@@ -51,6 +61,10 @@ int main() {
  Fraction f2(15, 4);
 
  f1.add(f2);
+ f1.print();
+ f2.print();
+
+ f1.multiply(f2);
  f1.print();
  f2.print();
 
