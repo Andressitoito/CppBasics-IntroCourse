@@ -3,6 +3,7 @@
 using namespace std;
 
 class Student {
+private:
  int age;
  char* name;
 
@@ -22,6 +23,7 @@ public:
   cout << "Student => " << name << ", age: " << age << endl;
  }
 
+ ~Student() { delete[] name; }
 };
 
 int main() {
@@ -37,7 +39,6 @@ int main() {
 
  s2.display();
  s1.display();
-
 
  return 0;
 }
