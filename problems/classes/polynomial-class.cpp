@@ -1,14 +1,14 @@
 #include <iostream>
 using namespace std;
 
-
-
 class Polynomial {
  int *degCoef;
  int capacity;
 
 public:
- // Default constructor
+ ////////////////////////////////////
+ // Default Constructor
+ ////////////////////////////////////
  Polynomial() {
   capacity = 5;
   degCoef = new int[capacity];
@@ -17,16 +17,31 @@ public:
    degCoef[i] = i;
   }
  }
+
+ ////////////////////////////////////
  //  Parameterized constructor
- Polynomial(int arr[]) {}
+ ////////////////////////////////////
+ Polynomial(int arr[], int size) {
+  capacity = size;
+  degCoef = new int[size];
+
+  for (int i = 0; i < size; i++) {
+   degCoef[i] = arr[i];
+  }
+ }
+
  // Copy constructor
 
+
+
+ // get capacity
+ int getCapacity() { return this->capacity; }
 
  // Copy assigment operator
 
 
  // Print function
- void print() {
+ void print() const {
   for (int i = 0; i < this->capacity; i++) {
    if (i == 0 && this->degCoef != 0) {
     cout << this->degCoef[i];
@@ -43,8 +58,6 @@ public:
   cout << endl;
  }
 
- //  num + x's +
-
  // Overload plus operator
 
 
@@ -60,9 +73,14 @@ public:
 };
 
 int main() {
- Polynomial p1;
+ int arr[6] = {3, 2, 0, 5, 0, 6};
 
+ Polynomial p1(arr, 6);
+ Polynomial p2(p1);
  p1.print();
+
+
+ p2.print();
 
 
  return 0;
