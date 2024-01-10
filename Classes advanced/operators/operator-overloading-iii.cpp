@@ -13,7 +13,7 @@ public:
   this->denominator = denominator;
  }
 
- void print() {
+ void print() const {
   cout << "Fraction => " << this->numerator << "/" << denominator
        << endl;
  }
@@ -43,7 +43,7 @@ public:
   return fnew;
  }
 
- Fraction operator+(Fraction const &f2) const {
+ Fraction operator+(Fraction const &f2) {
   int lcm = this->denominator * f2.denominator;
   int x = lcm / denominator;
   int y = lcm / f2.denominator;
@@ -64,7 +64,7 @@ public:
   this->simplify();
  }
 
- Fraction operator*(Fraction const &f2) const {
+ Fraction operator*(Fraction const &f2) {
   int num = numerator * f2.numerator;
   int den = denominator * f2.denominator;
 
@@ -133,9 +133,13 @@ int main() {
  Fraction f1(10, 3);
  Fraction f2(5, 2);
 
+ Fraction f3 = f1 + f2;
+ f3.print();
  f1 += f2;
  f1.print();
  f2.print();
+
+
 
  (f1 += f2) += f2;
 
