@@ -14,7 +14,7 @@ public:
   degCoef = new int[capacity];
 
   for (int i = 0; i < capacity; i++) {
-   degCoef[i] = i;
+   degCoef[i] = 0;
   }
  }
 
@@ -135,38 +135,40 @@ public:
  // Overload Multiply Operator
  ////////////////////////////////////
  Polynomial &operator*=(Polynomial const &p) {
-  int size = std::max(this->capacity, p.capacity);
+  int sizeResponse = (this->capacity + p.capacity) - 1;
+  int *arrDegCoef = new int[sizeResponse];
+
+  for (int i = 0; i < this->capacity; i++) {
+   for (int j = 0; j < p.capacity; j++) {
+    int prev = arrDegCoef[i + j];
+
+    arrDegCoef[i + j] = (this->degCoef[j] * p.degCoef[j]) + prev;
+
+    std::cout << "arrDegCoef[i + j] => " << arrDegCoef[i + j]
+              << std::endl;
+   }
+  }
+
+  int size = std::max(this->capacity, sizeResponse);
 
   if (size < this->capacity) {
    int *newDegCoef = new int[size];
 
    for (int i = 0; i < size; i++) {
-    newDegCoef[i] = this->degCoef[i];
+    newDegCoef[i] = arrDegCoef[i];
    }
 
    delete[] this->degCoef;
 
-   this->degCoef = newDegCoef;
+   this->degCoef = arrDegCoef;
    this->capacity = size;
+  } else {
+   delete[] this->degCoef;
+
+   this->degCoef = arrDegCoef;
   }
 
-  int *arrDegCoef = new int[size];
-
-  for (int i = 0; i < size; i++) {
-   arrDegCoef[i] = 0;
-   std::cout << "arDefCoef => " << arrDegCoef[i] << std::endl;
-  }
-
-
-  for (int i = 0; i < size; i++) {
-   for (int j = i + 1; j < size; j++) {
-    int prev = this->degCoef[i] + p.degCoef[j];
-
-    arrDegCoef[i] = this->degCoef[j] * p.degCoef[j];
-
-    
-   }
-  }
+  return *this;
  }
 
 
@@ -208,6 +210,17 @@ int main() {
  p1 += p5;
  cout << "pass3 => " << endl;
  p1.print();
+
+ int arr7[3] = {2, 2, 2};
+ Polynomial p7(arr, 3);
+ Polynomial p8(p7);
+
+ p7.print();
+ p8.print();
+
+ p7 += p8;
+ p7.print();
+
 
  return 0;
 }
