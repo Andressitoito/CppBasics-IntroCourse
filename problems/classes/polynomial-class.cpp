@@ -141,11 +141,7 @@ public:
   for (int i = 0; i < this->capacity; i++) {
    for (int j = 0; j < p.capacity; j++) {
     int prev = arrDegCoef[i + j];
-
-    arrDegCoef[i + j] = (this->degCoef[j] * p.degCoef[j]) + prev;
-
-    std::cout << "arrDegCoef[i + j] => " << arrDegCoef[i + j]
-              << std::endl;
+    arrDegCoef[i + j] = (this->degCoef[i] * p.degCoef[j]) + prev;
    }
   }
 
@@ -166,6 +162,11 @@ public:
    delete[] this->degCoef;
 
    this->degCoef = arrDegCoef;
+   this->capacity = size;
+  }
+
+  for (int i = 0; i < size; i++) {
+   std::cout << "values => " << this->degCoef[i] << std::endl;
   }
 
   return *this;
@@ -187,15 +188,14 @@ int main() {
 
  Polynomial p1(arr, 6);
  Polynomial p2(p1);
- // p1.print();
- // p2.print();
+ p1.print();
+ p2.print();
 
  Polynomial p3;
+ p3.print();
 
  int arr2[5] = {1, 5, 13, -43, 5};
  Polynomial p5(arr2, 5);
-
- p3.print();
 
  p3 += p1;
 
@@ -211,16 +211,16 @@ int main() {
  cout << "pass3 => " << endl;
  p1.print();
 
- int arr7[3] = {2, 2, 2};
- Polynomial p7(arr, 3);
+ int arr7[2] = {2, 2};
+ Polynomial p7(arr7, 2);
  Polynomial p8(p7);
-
  p7.print();
  p8.print();
 
- p7 += p8;
- p7.print();
+ p7 *= p8;
 
+ p7.print();
+ std::cout << "capacity => " << p7.getCapacity() << std::endl;
 
  return 0;
 }
