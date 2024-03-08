@@ -11,40 +11,51 @@ protected:
 public:
  string color;
 
- Vehicle() {
-  std::cout << "Vehicle default constructor" << std::endl;
- }
+ // Vehicle() {
+ //  std::cout << "Vehicle default constructor" << std::endl;
+ // }
+
  Vehicle(int z) {
-  std::cout << "Vehicle parameterized constructor" << std::endl;
+  std::cout << "Vehicle parameterized constructor " << z << std::endl;
   maxSpeed = z;
  }
  void print() { std::cout << "Vehicle" << std::endl; }
  ~Vehicle() { std::cout << "Vehicle destructor" << std::endl; }
 };
 
-class Car : public Vehicle {
+class Car : virtual public Vehicle {
 public:
  int numGears;
 
- Car() { std::cout << "Car default constructor" << std::endl; }
+ Car() : Vehicle(3) {
+  std::cout << "Car default constructor" << std::endl;
+ }
  ~Car() { std::cout << "Car destructor" << std::endl; }
+
+ void print() {
+  std::cout << "Num tyres => " << numTyres << std::endl;
+  std::cout << "Color => " << color << std::endl;
+  std::cout << "Num gears => " << numGears << std::endl;
+ }
 };
 
-class Truck : public Vehicle {
+class Truck : virtual public Vehicle {
 public:
- Truck() { std::cout << "Truck constructor" << std::endl; }
+ Truck() : Vehicle(4) {
+  std::cout << "Truck constructor" << std::endl;
+ }
 };
 
 class Bus : public Car, public Truck {
 public:
- Bus() { std::cout << "Bus constructor" << std::endl; }
+ Bus() : Vehicle(5) { std::cout << "Bus constructor" << std::endl; }
 };
 
 int main() {
  Bus b;
 
-
-
+ b.Car::print();
+ b.Truck::print();
 
  return 0;
 }
