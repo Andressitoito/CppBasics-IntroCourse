@@ -6,14 +6,13 @@ public:
  string color;
 
  virtual void print() { std::cout << "Vehicle" << std::endl; }
-}; 
+};
 
 class Car : public Vehicle {
 public:
  int numGears;
  void print() { std::cout << "Car" << std::endl; }
 };
-
 
 int main() {
  Vehicle v;
